@@ -116,6 +116,158 @@ cursor:pointer;
 
 
 /* =========================
+   شاشة تحميل الباشمحاسب
+========================= */
+
+#loadingScreen{
+
+position:fixed;
+
+inset:0;
+
+z-index:99999;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+background:
+
+linear-gradient(
+135deg,
+#f5f9ff,
+#ffffff
+);
+
+transition:
+opacity .45s ease,
+visibility .45s ease;
+
+}
+
+body.dark #loadingScreen{
+
+background:
+
+linear-gradient(
+135deg,
+#0d1118,
+#172033
+);
+
+}
+
+.loading-logo{
+
+width:75px;
+height:75px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:22px;
+
+font-size:38px;
+
+background:
+
+linear-gradient(
+135deg,
+#2563eb,
+#60a5fa
+);
+
+box-shadow:
+
+0 15px 40px
+rgba(37,99,235,.25);
+
+animation:
+loadingPulse 1.3s ease-in-out infinite;
+
+}
+
+.loading-title{
+
+margin-top:16px;
+
+font-size:26px;
+
+font-weight:900;
+
+color:#2563eb;
+
+}
+
+.loading-text{
+
+margin-top:6px;
+
+font-size:13px;
+
+color:#64748b;
+
+}
+
+.loading-spinner{
+
+width:32px;
+height:32px;
+
+margin-top:18px;
+
+border:
+3px solid
+rgba(37,99,235,.15);
+
+border-top-color:
+#2563eb;
+
+border-radius:50%;
+
+animation:
+loadingSpin .8s linear infinite;
+
+}
+
+@keyframes loadingSpin{
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+@keyframes loadingPulse{
+
+0%,100%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.06);
+}
+
+}
+
+#loadingScreen.hide{
+
+opacity:0;
+
+visibility:hidden;
+
+pointer-events:none;
+
+}
+
+
+/* =========================
    BACKGROUND
 ========================= */
 
@@ -1120,6 +1272,29 @@ padding:15px;
 
 
 <!-- =========================
+     شاشة تحميل الباشمحاسب
+========================= -->
+
+<div id="loadingScreen">
+
+<div class="loading-logo">
+🧮
+</div>
+
+<div class="loading-title">
+الباشمحاسب
+</div>
+
+<div class="loading-text">
+جاري التحميل...
+</div>
+
+<div class="loading-spinner"></div>
+
+</div>
+
+
+<!-- =========================
      الخلفية
 ========================= -->
 
@@ -1509,6 +1684,37 @@ error
 
 
 /* =========================
+   إخفاء شاشة التحميل
+========================= */
+
+window.addEventListener(
+"load",
+function(){
+
+setTimeout(
+function(){
+
+const loadingScreen =
+document.getElementById(
+"loadingScreen"
+);
+
+if(loadingScreen){
+
+loadingScreen.classList.add(
+"hide"
+);
+
+}
+
+},
+500
+);
+
+});
+
+
+/* =========================
    BUTTON CLICK SOUND
 ========================= */
 
@@ -1546,18 +1752,18 @@ clickAudioContext.createGain();
 oscillator.type = "sine";
 
 oscillator.frequency.setValueAtTime(
-700,
+650,
 clickAudioContext.currentTime
 );
 
 gain.gain.setValueAtTime(
-0.05,
+0.04,
 clickAudioContext.currentTime
 );
 
 gain.gain.exponentialRampToValueAtTime(
 0.001,
-clickAudioContext.currentTime + 0.07
+clickAudioContext.currentTime + 0.06
 );
 
 oscillator.connect(gain);
@@ -1569,7 +1775,7 @@ clickAudioContext.destination
 oscillator.start();
 
 oscillator.stop(
-clickAudioContext.currentTime + 0.07
+clickAudioContext.currentTime + 0.06
 );
 
 }
@@ -1586,16 +1792,20 @@ error
 }
 
 
-/* تشغيل الصوت عند الضغط على أي button */
+/* =========================
+   الصوت عند الضغط على الأزرار والروابط
+========================= */
 
 document.addEventListener(
-"click",
+"pointerdown",
 function(event){
 
-const button =
-event.target.closest("button");
+const clickable =
+event.target.closest(
+"button, a"
+);
 
-if(!button) return;
+if(!clickable) return;
 
 playClickSound();
 
