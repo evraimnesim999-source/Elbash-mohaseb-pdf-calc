@@ -1,10 +1,9 @@
-const CACHE_NAME = "elbash-mohaseb-v2";
+const CACHE_NAME = "elbash-mohaseb-v3";
 
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./shopcalc.html",
-  "./manifest.json"
+  "./shopcalc.html"
 ];
 
 self.addEventListener("install", event => {
