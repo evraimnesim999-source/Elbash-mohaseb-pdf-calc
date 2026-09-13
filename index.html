@@ -4,12 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <meta name="google-site-verification"
 content="l2UCtSrI8cbaCq5MuXtOjYLZrFOJynn7oybzt0jr46I">
 
-<title>   <title>الباشمحاسب - الحسابات والمبيعات والمخزون</title>   </title>
+<title>الباشمحاسب - الحسابات والمبيعات والمخزون</title>
 
 <meta name="description"
 content="الباشمحاسب - برنامج مجاني للحسابات والمبيعات والمخزون والأرباح وإدارة المنتجات.">
@@ -17,12 +19,19 @@ content="الباشمحاسب - برنامج مجاني للحسابات وال�
 <meta name="keywords"
 content="الباشمحاسب, ShopCalc, PDFvero, PDF, حساب الربح, المبيعات, المخزون, الفواتير">
 
-<meta name="author" content="CALCvero & PDFvero">
+<meta name="author"
+content="CALCvero & PDFvero">
 
-<meta name="robots" content="index, follow">
+<meta name="robots"
+content="index, follow">
 
-<meta name="theme-color" content="#2563eb">
-<link rel="manifest" href="./manifest.json">
+<meta name="theme-color"
+content="#2563eb">
+
+<!-- Manifest واحد فقط -->
+<link rel="manifest"
+href="./manifest.json">
+
 <style>
 
 *{
@@ -1110,7 +1119,9 @@ padding:15px;
 <body>
 
 
-<!-- الخلفية -->
+<!-- =========================
+     الخلفية
+========================= -->
 
 <div class="bg-shapes">
 
@@ -1123,13 +1134,16 @@ padding:15px;
 </div>
 
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header class="navbar">
 
 <div class="nav-container">
 
-<a href="index.html" class="brand">
+<a href="index.html"
+class="brand">
 
 <div class="brand-icon">
 ⚡
@@ -1150,9 +1164,10 @@ padding:15px;
 class="theme-btn"
 id="themeBtn"
 onclick="toggleTheme()"
-title="تغيير الوضع"
->
+title="تغيير الوضع">
+
 🌙
+
 </button>
 
 </div>
@@ -1163,7 +1178,9 @@ title="تغيير الوضع"
 <main>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
@@ -1199,17 +1216,19 @@ title="تغيير الوضع"
 
 <a
 href="shopcalc.html"
-class="quick-btn calc"
->
+class="quick-btn calc">
+
 🧮 ابدأ الحساب
+
 </a>
 
 
 <a
 href="index-pdfvero.html"
-class="quick-btn pdf"
->
+class="quick-btn pdf">
+
 📄 أدوات PDF
+
 </a>
 
 </div>
@@ -1219,34 +1238,42 @@ class="quick-btn pdf"
 
 <a
 href="shopcalc.html"
-class="shortcut"
->
+class="shortcut">
+
 💰
+
 <span>الربح</span>
+
 </a>
 
 <a
 href="shopcalc.html"
-class="shortcut"
->
+class="shortcut">
+
 🧾
+
 <span>الفاتورة</span>
+
 </a>
 
 <a
 href="shopcalc.html"
-class="shortcut"
->
+class="shortcut">
+
 📦
+
 <span>المخزون</span>
+
 </a>
 
 <a
 href="shopcalc.html"
-class="shortcut"
->
+class="shortcut">
+
 🛒
+
 <span>المبيعات</span>
+
 </a>
 
 </div>
@@ -1254,7 +1281,9 @@ class="shortcut"
 </section>
 
 
-<!-- الأقسام -->
+<!-- =========================
+     الأقسام
+========================= -->
 
 <section class="cards">
 
@@ -1264,15 +1293,21 @@ class="shortcut"
 <article class="choice-card pdf-card">
 
 <div class="card-icon">
+
 📄
+
 </div>
 
 <h2>
+
 PDFvero
+
 </h2>
 
 <div class="subtitle">
+
 أدوات PDF والملفات
+
 </div>
 
 <ul class="features">
@@ -1301,10 +1336,12 @@ PDFvero
 
 <a
 href="index-pdfvero.html"
-class="enter-btn pdf-btn"
->
+class="enter-btn pdf-btn">
+
 دخول إلى PDFvero
+
 <span>←</span>
+
 </a>
 
 </article>
@@ -1315,15 +1352,21 @@ class="enter-btn pdf-btn"
 <article class="choice-card calc-card">
 
 <div class="card-icon">
+
 🧮
+
 </div>
 
 <h2>
+
 الباشمحاسب
+
 </h2>
 
 <div class="subtitle">
+
 الحسابات والتجارة والمبيعات
+
 </div>
 
 <ul class="features">
@@ -1352,10 +1395,12 @@ class="enter-btn pdf-btn"
 
 <a
 href="shopcalc.html"
-class="enter-btn calc-btn"
->
+class="enter-btn calc-btn">
+
 دخول إلى الباشمحاسب
+
 <span>←</span>
+
 </a>
 
 </article>
@@ -1381,7 +1426,6 @@ class="enter-btn calc-btn"
 
 
 <script>
-
 
 /* =========================
    الوضع الليلي
@@ -1436,8 +1480,131 @@ document.getElementById(
 }
 );
 
+
+/* =========================
+   SERVICE WORKER
+========================= */
+
+if("serviceWorker" in navigator){
+
+window.addEventListener(
+"load",
+function(){
+
+navigator.serviceWorker.register("./sw.js")
+.then(function(){
+console.log("Service Worker registered");
+})
+.catch(function(error){
+console.log(
+"Service Worker error:",
+error
+);
+});
+
+}
+);
+
+}
+
+
+/* =========================
+   BUTTON CLICK SOUND
+========================= */
+
+let clickAudioContext = null;
+
+function playClickSound(){
+
+try{
+
+if(!clickAudioContext){
+
+clickAudioContext =
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
+
+}
+
+if(
+clickAudioContext.state ===
+"suspended"
+){
+
+clickAudioContext.resume();
+
+}
+
+const oscillator =
+clickAudioContext.createOscillator();
+
+const gain =
+clickAudioContext.createGain();
+
+oscillator.type = "sine";
+
+oscillator.frequency.setValueAtTime(
+700,
+clickAudioContext.currentTime
+);
+
+gain.gain.setValueAtTime(
+0.05,
+clickAudioContext.currentTime
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.001,
+clickAudioContext.currentTime + 0.07
+);
+
+oscillator.connect(gain);
+
+gain.connect(
+clickAudioContext.destination
+);
+
+oscillator.start();
+
+oscillator.stop(
+clickAudioContext.currentTime + 0.07
+);
+
+}
+
+catch(error){
+
+console.log(
+"Click sound error:",
+error
+);
+
+}
+
+}
+
+
+/* تشغيل الصوت عند الضغط على أي button */
+
+document.addEventListener(
+"click",
+function(event){
+
+const button =
+event.target.closest("button");
+
+if(!button) return;
+
+playClickSound();
+
+}
+);
+
 </script>
 
 
 </body>
+
 </html>

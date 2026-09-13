@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
  <head>
- <script>
- if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("./sw.js"); 
-} <link rel="manifest" href="./manifest.json">
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
+</script>
 
-</script> 
+<link rel="manifest" href="./manifest.json">
 <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>حسابات تجارية Evra - المبيعات والمخزون والمرتجعات</title>
@@ -15,8 +16,6 @@
     name="description"
     content="حسابات تجارية Evra لإدارة المنتجات والمبيعات والمخزون والمرتجعات وحساب الأرباح والتقارير."
   >
-
-  <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#2563eb">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -7720,6 +7719,73 @@ document.addEventListener(
     });
   }
 })();
+</script>
+
+<script>
+/* =========================
+   BUTTON CLICK SOUND
+========================= */
+
+let clickAudioContext = null;
+
+function playClickSound() {
+  try {
+    if (!clickAudioContext) {
+      clickAudioContext =
+        new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    if (clickAudioContext.state === "suspended") {
+      clickAudioContext.resume();
+    }
+
+    const oscillator =
+      clickAudioContext.createOscillator();
+
+    const gain =
+      clickAudioContext.createGain();
+
+    oscillator.type = "sine";
+
+    oscillator.frequency.setValueAtTime(
+      700,
+      clickAudioContext.currentTime
+    );
+
+    gain.gain.setValueAtTime(
+      0.05,
+      clickAudioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      clickAudioContext.currentTime + 0.07
+    );
+
+    oscillator.connect(gain);
+    gain.connect(clickAudioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(
+      clickAudioContext.currentTime + 0.07
+    );
+
+  } catch (error) {
+    console.log("Click sound error:", error);
+  }
+
+}
+
+document.addEventListener("click", function(event) {
+
+  const button =
+    event.target.closest("button");
+
+  if (!button) return;
+
+  playClickSound();
+
+});
 </script>
 
 </body>
