@@ -1262,7 +1262,92 @@ padding:15px;
 }
 
 }
+/* =========================
+   زر تثبيت الباشمحاسب
+========================= */
 
+.install-btn{
+height:40px;
+padding:0 12px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+gap:5px;
+
+border:1px solid rgba(37,99,235,.18);
+border-radius:11px;
+
+background:
+linear-gradient(
+135deg,
+#2563eb,
+#60a5fa
+);
+
+color:white;
+
+font-family:inherit;
+font-size:13px;
+font-weight:900;
+
+box-shadow:
+0 7px 18px
+rgba(37,99,235,.18);
+
+transition:.2s;
+cursor:pointer;
+}
+
+.install-btn:hover{
+transform:translateY(-2px);
+filter:brightness(1.06);
+}
+
+.install-btn:active{
+transform:scale(.96);
+}
+
+.install-btn span{
+font-size:12px;
+}
+
+body.dark .install-btn{
+box-shadow:
+0 7px 18px
+rgba(37,99,235,.25);
+}
+
+@media(max-width:650px){
+
+.install-btn{
+height:35px;
+padding:0 9px;
+
+border-radius:9px;
+font-size:14px;
+}
+
+.install-btn span{
+font-size:10px;
+}
+
+}
+
+@media(max-width:380px){
+
+.install-btn{
+height:32px;
+padding:0 7px;
+gap:3px;
+}
+
+.install-btn span{
+font-size:9px;
+}
+
+}
 </style>
 
 </head>
@@ -1335,6 +1420,18 @@ class="brand">
 </a>
 
 
+<div class="actions">
+
+<button
+class="install-btn"
+id="installBtn"
+style="display:none;"
+title="تثبيت الباشمحاسب">
+
+📲 <span>تثبيت</span>
+
+</button>
+
 <button
 class="theme-btn"
 id="themeBtn"
@@ -1346,7 +1443,7 @@ title="تغيير الوضع">
 </button>
 
 </div>
-
+</div>
 </header>
 
 
@@ -1811,7 +1908,82 @@ playClickSound();
 
 }
 );
+/* =========================
+   تثبيت الباشمحاسب كتطبيق
+========================= */
 
+let deferredInstallPrompt = null;
+
+const installBtn =
+document.getElementById("installBtn");
+
+
+window.addEventListener(
+"beforeinstallprompt",
+function(event){
+
+event.preventDefault();
+
+deferredInstallPrompt = event;
+
+if(installBtn){
+
+installBtn.style.display = "flex";
+
+}
+
+});
+
+
+if(installBtn){
+
+installBtn.addEventListener(
+"click",
+async function(){
+
+if(!deferredInstallPrompt){
+
+return;
+
+}
+
+deferredInstallPrompt.prompt();
+
+const result =
+await deferredInstallPrompt.userChoice;
+
+if(result.outcome === "accepted"){
+
+console.log(
+"تم تثبيت الباشمحاسب"
+);
+
+}
+
+deferredInstallPrompt = null;
+
+installBtn.style.display = "none";
+
+});
+
+}
+
+
+window.addEventListener(
+"appinstalled",
+function(){
+
+console.log(
+"تم تثبيت الباشمحاسب بنجاح"
+);
+
+if(installBtn){
+
+installBtn.style.display = "none";
+
+}
+
+});
 </script>
 
 
