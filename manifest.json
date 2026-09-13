@@ -1,6 +1,6 @@
-{
-  "name": "ShopCalc - الحسابات والمبيعات التجارية",
-  "short_name": "ShopCalc",
+
+  "name": "الباشمحاسب - الحسابات والمبيعات والمخزون",
+"short_name": "الباشمحاسب",
   "description": "أدوات الحسابات والمبيعات والمخزون والأرباح",
   "start_url": "./",
   "display": "standalone",
