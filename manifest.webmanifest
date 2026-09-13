@@ -1,0 +1,20 @@
+{
+  "name": "حسابات تجارية Evra",
+  "short_name": "Evra حسابات",
+  "description": "إدارة المبيعات والمخزون والمرتجعات والأرباح والفواتير بدون إنترنت.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./shopcalc.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f9ff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "./evra-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
